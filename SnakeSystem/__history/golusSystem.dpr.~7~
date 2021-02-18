@@ -1,0 +1,19 @@
+program golusSystem;
+
+uses
+  Vcl.Forms,
+  uMain in 'Forms\uMain.pas' {frmMain},
+  uDm in 'Forms\uDm.pas' {Dados: TDataModule},
+  uBiblioteca in 'Classes\uBiblioteca.pas',
+  uFormConfigBD in 'Forms\uFormConfigBD.pas' {frmConfigBD};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmConfigBD, frmConfigBD);
+  Application.CreateForm(TDados, Dados);
+  Application.Run;
+end.

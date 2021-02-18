@@ -1,0 +1,129 @@
+object frmFormFiltroPadrao: TfrmFormFiltroPadrao
+  Left = 0
+  Top = 0
+  Caption = 'FILTROS'
+  ClientHeight = 369
+  ClientWidth = 746
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 746
+    Height = 81
+    Align = alTop
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 16
+      Top = 21
+      Width = 31
+      Height = 13
+      Caption = 'Label1'
+    end
+    object cxEdtFiltro: TcxTextEdit
+      Left = 16
+      Top = 40
+      Style.LookAndFeel.NativeStyle = False
+      Style.LookAndFeel.SkinName = 'Office2010Blue'
+      StyleDisabled.LookAndFeel.NativeStyle = False
+      StyleDisabled.LookAndFeel.SkinName = 'Office2010Blue'
+      StyleFocused.LookAndFeel.NativeStyle = False
+      StyleFocused.LookAndFeel.SkinName = 'Office2010Blue'
+      StyleHot.LookAndFeel.NativeStyle = False
+      StyleHot.LookAndFeel.SkinName = 'Office2010Blue'
+      TabOrder = 0
+      Width = 121
+    end
+    object Panel2: TPanel
+      Left = 632
+      Top = 1
+      Width = 113
+      Height = 79
+      Align = alRight
+      BevelOuter = bvNone
+      TabOrder = 1
+      object cxButton1: TcxButton
+        AlignWithMargins = True
+        Left = 5
+        Top = 5
+        Width = 103
+        Height = 69
+        Margins.Left = 5
+        Margins.Top = 5
+        Margins.Right = 5
+        Margins.Bottom = 5
+        Align = alClient
+        Caption = 'SAIR'
+        LookAndFeel.NativeStyle = False
+        LookAndFeel.SkinName = 'McSkin'
+        OptionsImage.Glyph.SourceDPI = 96
+        OptionsImage.Glyph.Data = {
+          89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+          6100000011744558745469746C6500556E646F3B52657365743BAD2506900000
+          00C349444154785EA5D3310AC2401085E10D5809829D4D50440BBD86BDB57D5A
+          AF202A7B0DF51EB692CA0B584810C54210F40251C7574C60796C9424C5D7CCEC
+          FC902246442A3163BB653DB882A83504607C78D0858BFFF87FA0036710B5A1E3
+          9F81369C8A1CBB811012901FEE1083853E07629002DEB082461618C22D27F082
+          3467B7877AF62D038A5830248488DECD75E98D2C75CE464EE0C84B8E2C3C811A
+          7C749F66438E24F05453DA3741D4438785444E605726D0828306263A2C159941
+          50F977FE0253D20A9E6D10BA410000000049454E44AE426082}
+        TabOrder = 0
+        OnClick = cxButton1Click
+      end
+    end
+    object btnFiltro: TcxButton
+      Left = 416
+      Top = 16
+      Width = 115
+      Height = 49
+      Caption = 'Filtrar'
+      LookAndFeel.NativeStyle = False
+      LookAndFeel.SkinName = 'McSkin'
+      OptionsImage.Glyph.SourceDPI = 96
+      OptionsImage.Glyph.Data = {
+        3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554
+        462D38223F3E0D0A3C7376672076657273696F6E3D22312E31222069643D22D0
+        A1D0BBD0BED0B95F312220786D6C6E733D22687474703A2F2F7777772E77332E
+        6F72672F323030302F7376672220786D6C6E733A786C696E6B3D22687474703A
+        2F2F7777772E77332E6F72672F313939392F786C696E6B2220783D2230707822
+        20793D22307078222076696577426F783D223020302033322033322220737479
+        6C653D22656E61626C652D6261636B67726F756E643A6E657720302030203332
+        2033323B2220786D6C3A73706163653D227072657365727665223E262331333B
+        262331303B3C7374796C6520747970653D22746578742F6373732220786D6C3A
+        73706163653D227072657365727665223E2E426C61636B7B66696C6C3A233732
+        373237323B7D262331333B262331303B2623393B2E426C75657B66696C6C3A23
+        3131373744373B7D3C2F7374796C653E0D0A3C672069643D22D0A1D0BBD0BED0
+        B95F32223E0D0A09093C7061746820636C6173733D22426C61636B2220643D22
+        4D31332C31374C322C32386C322C326C31312D31316C312D316C2D322D324C31
+        332C31377A222F3E0D0A09093C673E0D0A0909093C673E0D0A090909093C7061
+        746820636C6173733D22426C75652220643D224D32302C34632D342E342C302D
+        382C332E362D382C3873332E362C382C382C3873382D332E362C382D38533234
+        2E342C342C32302C347A204D32302C3138632D332E332C302D362D322E372D36
+        2D3673322E372D362C362D3673362C322E372C362C3620202623393B2623393B
+        2623393B2623393B5332332E332C31382C32302C31387A222F3E0D0A0909093C
+        2F673E0D0A09093C2F673E0D0A093C2F673E0D0A3C2F7376673E0D0A}
+      TabOrder = 2
+    end
+  end
+  object FDFiltro: TFDQuery
+    Connection = Dados.FDConexao
+    Transaction = FDTFiltro
+    Left = 216
+  end
+  object dsFiltro: TDataSource
+    DataSet = FDFiltro
+    Left = 248
+  end
+  object FDTFiltro: TFDTransaction
+    Connection = Dados.FDConexao
+    Left = 280
+  end
+end

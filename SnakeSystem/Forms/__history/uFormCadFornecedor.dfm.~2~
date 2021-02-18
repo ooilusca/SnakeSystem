@@ -1,0 +1,246 @@
+inherited frmCadFornecedor: TfrmCadFornecedor
+  Caption = 'FORNECEDOR'
+  ClientHeight = 320
+  ClientWidth = 564
+  Color = 15382379
+  OnShow = FormShow
+  ExplicitWidth = 570
+  ExplicitHeight = 349
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel [0]
+    Left = 24
+    Top = 92
+    Width = 59
+    Height = 13
+    Caption = 'Fornecedor:'
+    FocusControl = cxDBEdtFornecedor
+  end
+  object Label2: TLabel [1]
+    Left = 368
+    Top = 92
+    Width = 29
+    Height = 13
+    Caption = 'CNPJ:'
+    FocusControl = cxDBEdtCNPJ
+  end
+  object Label3: TLabel [2]
+    Left = 24
+    Top = 185
+    Width = 163
+    Height = 13
+    Caption = 'Forma de contato ou observa'#231#227'o:'
+    FocusControl = cxDBEdtContato
+  end
+  object Label4: TLabel [3]
+    Left = 24
+    Top = 136
+    Width = 37
+    Height = 13
+    Caption = 'Cidade:'
+  end
+  object Label5: TLabel [4]
+    Left = 250
+    Top = 136
+    Width = 37
+    Height = 13
+    Caption = 'Estado:'
+  end
+  object Label6: TLabel [5]
+    Left = 469
+    Top = 136
+    Width = 23
+    Height = 13
+    Caption = 'Pa'#237's:'
+  end
+  inherited pnlHeader: TPanel
+    Width = 564
+    Color = 15452818
+    TabOrder = 6
+    ExplicitWidth = 561
+    inherited bitbtnSair: TcxButton
+      Left = 483
+      ExplicitLeft = 480
+    end
+  end
+  object cxDBEdtFornecedor: TcxDBTextEdit [7]
+    Left = 24
+    Top = 107
+    DataBinding.DataField = 'FORNECEDOR'
+    DataBinding.DataSource = dsCadPadrao
+    Properties.CharCase = ecUpperCase
+    Style.LookAndFeel.NativeStyle = False
+    Style.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleDisabled.LookAndFeel.NativeStyle = False
+    StyleDisabled.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleFocused.LookAndFeel.NativeStyle = False
+    StyleFocused.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleHot.LookAndFeel.NativeStyle = False
+    StyleHot.LookAndFeel.SkinName = 'Office2010Blue'
+    TabOrder = 0
+    Width = 338
+  end
+  object cxDBEdtCNPJ: TcxDBTextEdit [8]
+    Left = 368
+    Top = 107
+    DataBinding.DataField = 'CNPJ'
+    DataBinding.DataSource = dsCadPadrao
+    Properties.CharCase = ecUpperCase
+    Style.LookAndFeel.NativeStyle = False
+    Style.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleDisabled.LookAndFeel.NativeStyle = False
+    StyleDisabled.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleFocused.LookAndFeel.NativeStyle = False
+    StyleFocused.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleHot.LookAndFeel.NativeStyle = False
+    StyleHot.LookAndFeel.SkinName = 'Office2010Blue'
+    TabOrder = 1
+    Width = 153
+  end
+  object cxDBEdtContato: TcxDBTextEdit [9]
+    Left = 24
+    Top = 204
+    DataBinding.DataField = 'CONTATO'
+    DataBinding.DataSource = dsCadPadrao
+    Properties.CharCase = ecUpperCase
+    Style.LookAndFeel.NativeStyle = False
+    Style.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleDisabled.LookAndFeel.NativeStyle = False
+    StyleDisabled.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleFocused.LookAndFeel.NativeStyle = False
+    StyleFocused.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleHot.LookAndFeel.NativeStyle = False
+    StyleHot.LookAndFeel.SkinName = 'Office2010Blue'
+    TabOrder = 5
+    Width = 497
+  end
+  object cxDBlkCBCidade: TcxDBLookupComboBox [10]
+    Left = 24
+    Top = 152
+    DataBinding.DataField = 'ID_CIDADE'
+    DataBinding.DataSource = dsCadPadrao
+    Properties.CharCase = ecUpperCase
+    Properties.KeyFieldNames = 'ID_CIDADE'
+    Properties.ListColumns = <
+      item
+        FieldName = 'CIDADE'
+      end>
+    Properties.ListSource = dmLookup.dsConCidade
+    Style.LookAndFeel.NativeStyle = False
+    Style.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleDisabled.LookAndFeel.NativeStyle = False
+    StyleDisabled.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleFocused.LookAndFeel.NativeStyle = False
+    StyleFocused.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleHot.LookAndFeel.NativeStyle = False
+    StyleHot.LookAndFeel.SkinName = 'Office2010Blue'
+    TabOrder = 2
+    Width = 217
+  end
+  object cxDBlkCBEstado: TcxDBLookupComboBox [11]
+    Left = 247
+    Top = 155
+    DataBinding.DataField = 'ID_ESTADO'
+    DataBinding.DataSource = dmLookup.dsConCidade
+    Properties.CharCase = ecUpperCase
+    Properties.KeyFieldNames = 'ID_ESTADO'
+    Properties.ListColumns = <
+      item
+        FieldName = 'ESTADO'
+      end>
+    Properties.ListSource = dmLookup.dsConEstado
+    Style.LookAndFeel.NativeStyle = False
+    Style.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleDisabled.LookAndFeel.NativeStyle = False
+    StyleDisabled.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleFocused.LookAndFeel.NativeStyle = False
+    StyleFocused.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleHot.LookAndFeel.NativeStyle = False
+    StyleHot.LookAndFeel.SkinName = 'Office2010Blue'
+    TabOrder = 3
+    Width = 206
+  end
+  object cxDBlkCBPais: TcxDBLookupComboBox [12]
+    Left = 469
+    Top = 152
+    DataBinding.DataField = 'ID_PAIS'
+    DataBinding.DataSource = dmLookup.dsConEstado
+    Properties.CharCase = ecUpperCase
+    Properties.KeyFieldNames = 'ID_PAIS'
+    Properties.ListColumns = <
+      item
+        FieldName = 'ABR'
+      end>
+    Properties.ListSource = dmLookup.dsConPais
+    Style.LookAndFeel.NativeStyle = False
+    Style.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleDisabled.LookAndFeel.NativeStyle = False
+    StyleDisabled.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleFocused.LookAndFeel.NativeStyle = False
+    StyleFocused.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleHot.LookAndFeel.NativeStyle = False
+    StyleHot.LookAndFeel.SkinName = 'Office2010Blue'
+    TabOrder = 4
+    Width = 52
+  end
+  inherited FDCadPadrao: TFDQuery
+    BeforeInsert = FDCadPadraoBeforeInsert
+    BeforeEdit = FDCadPadraoBeforeEdit
+    UpdateTransaction = FDTCadPadrao
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_FORNECEDOR_ID'
+    UpdateOptions.AutoIncFields = 'ID_FORNECEDOR'
+    UpdateObject = nil
+    SQL.Strings = (
+      'SELECT F.ID ID_FORNECEDOR, F.ID_CIDADE, '
+      '       F.NOME FORNECEDOR, F.CNPJ, F.CONTATO'
+      'FROM FORNECEDOR F')
+    object FDCadPadraoID_FORNECEDOR: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'ID_FORNECEDOR'
+      Origin = 'ID'
+    end
+    object FDCadPadraoID_CIDADE: TIntegerField
+      FieldName = 'ID_CIDADE'
+      Origin = 'ID_CIDADE'
+    end
+    object FDCadPadraoFORNECEDOR: TStringField
+      FieldName = 'FORNECEDOR'
+      Origin = 'NOME'
+      Size = 100
+    end
+    object FDCadPadraoCNPJ: TStringField
+      FieldName = 'CNPJ'
+      Origin = 'CNPJ'
+      Size = 45
+    end
+    object FDCadPadraoCONTATO: TStringField
+      FieldName = 'CONTATO'
+      Origin = 'CONTATO'
+      Size = 200
+    end
+  end
+  inherited FDUCadPadrao: TFDUpdateSQL
+    InsertSQL.Strings = (
+      'INSERT INTO FORNECEDOR'
+      '(ID_CIDADE, NOME, CNPJ, CONTATO)'
+      'VALUES (:NEW_ID_CIDADE, :NEW_NOME, :NEW_CNPJ, :NEW_CONTATO)'
+      'RETURNING ID_CIDADE, NOME, CNPJ, CONTATO')
+    ModifySQL.Strings = (
+      'UPDATE FORNECEDOR'
+      
+        'SET ID_CIDADE = :NEW_ID_CIDADE, NOME = :NEW_NOME, CNPJ = :NEW_CN' +
+        'PJ, '
+      '  CONTATO = :NEW_CONTATO'
+      'WHERE ID = :OLD_ID'
+      'RETURNING ID_CIDADE, NOME, CNPJ, CONTATO')
+    DeleteSQL.Strings = (
+      'DELETE FROM FORNECEDOR'
+      'WHERE ID = :OLD_ID')
+    FetchRowSQL.Strings = (
+      'SELECT ID, ID_CIDADE, NOME, CNPJ, CONTATO'
+      'FROM FORNECEDOR'
+      'WHERE ID = :OLD_ID')
+  end
+end

@@ -1,0 +1,56 @@
+unit uLookUp;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.Client,
+  Data.DB, FireDAC.Comp.DataSet, uDm, uSysParams;
+
+type
+  TdmLookup = class(TDataModule)
+    FDConEstado: TFDQuery;
+    dsConEstado: TDataSource;
+    FDTransaction: TFDTransaction;
+    FDConCidade: TFDQuery;
+    dsConCidade: TDataSource;
+    FDConPais: TFDQuery;
+    dsConPais: TDataSource;
+    FDConEstadoID_ESTADO: TIntegerField;
+    FDConEstadoID_PAIS: TIntegerField;
+    FDConEstadoESTADO: TStringField;
+    FDConEstadoUF: TStringField;
+    FDConPaisID_PAIS: TIntegerField;
+    FDConPaisPAIS: TStringField;
+    FDConPaisABR: TStringField;
+    FDTipoProduto: TFDQuery;
+    dsTipoProduto: TDataSource;
+    dsFornecedor: TDataSource;
+    FDFornecedor: TFDQuery;
+    FDCliente: TFDQuery;
+    dsCliente: TDataSource;
+    dsProduto: TDataSource;
+    FDProduto: TFDQuery;
+    FDConCidadeID_CIDADE: TIntegerField;
+    FDConCidadeID_ESTADO: TIntegerField;
+    FDConCidadeCIDADE: TStringField;
+    FDProdutoID: TIntegerField;
+    FDProdutoDESCRICAO: TStringField;
+    FDProdutoPRECO_VENDA: TSingleField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dmLookup: TdmLookup;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

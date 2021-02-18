@@ -1,0 +1,21 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 554
+  Width = 672
+  object FDConexao: TFDConnection
+    Params.Strings = (
+      
+        'Database=C:\Users\lucas\Documents\PROGRAMA'#199#195'O\BANCO DE DADOS\DBS' +
+        'NAKE.FDB'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'Protocol=TCPIP'
+      'Server=localhost'
+      'Port=3050'
+      'CharacterSet=UTF8'
+      'DriverID=FB')
+    LoginPrompt = False
+    Left = 32
+    Top = 16
+  end
+end

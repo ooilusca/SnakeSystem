@@ -1,0 +1,130 @@
+object dmLookup: TdmLookup
+  OldCreateOrder = False
+  Height = 256
+  Width = 286
+  object FDConEstado: TFDQuery
+    Connection = Dados.FDConexao
+    Transaction = FDTransaction
+    SQL.Strings = (
+      'SELECT EST.ID ID_ESTADO, EST.ID_PAIS, '
+      '       EST.NOME ESTADO, EST.UF'
+      'FROM ESTADO EST'
+      'ORDER BY EST.UF')
+    Left = 56
+    Top = 56
+    object FDConEstadoID_ESTADO: TIntegerField
+      FieldName = 'ID_ESTADO'
+      Origin = 'ID'
+    end
+    object FDConEstadoID_PAIS: TIntegerField
+      FieldName = 'ID_PAIS'
+      Origin = 'ID_PAIS'
+    end
+    object FDConEstadoESTADO: TStringField
+      FieldName = 'ESTADO'
+      Origin = 'NOME'
+      Size = 200
+    end
+    object FDConEstadoUF: TStringField
+      FieldName = 'UF'
+      Origin = 'UF'
+      FixedChar = True
+      Size = 2
+    end
+  end
+  object dsConEstado: TDataSource
+    DataSet = FDConEstado
+    Left = 16
+    Top = 56
+  end
+  object FDTransaction: TFDTransaction
+    Connection = Dados.FDConexao
+    Left = 200
+    Top = 8
+  end
+  object FDConCidade: TFDQuery
+    Connection = Dados.FDConexao
+    Transaction = FDTransaction
+    SQL.Strings = (
+      'SELECT CID.ID ID_CIDADE, CID.ID_ESTADO, CID.NOME CIDADE'
+      'FROM CIDADE CID')
+    Left = 56
+    Top = 8
+    object FDConCidadeID_CIDADE: TIntegerField
+      FieldName = 'ID_CIDADE'
+      Origin = 'ID'
+    end
+    object FDConCidadeID_ESTADO: TIntegerField
+      FieldName = 'ID_ESTADO'
+      Origin = 'ID_ESTADO'
+    end
+    object FDConCidadeCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'NOME'
+      Size = 200
+    end
+  end
+  object dsConCidade: TDataSource
+    DataSet = FDConCidade
+    Left = 16
+    Top = 8
+  end
+  object FDConPais: TFDQuery
+    Connection = Dados.FDConexao
+    Transaction = FDTransaction
+    SQL.Strings = (
+      'SELECT PS.ID ID_PAIS, PS.NOME PAIS, PS.ABR'
+      'FROM PAIS PS'
+      'ORDER BY PS.ABR')
+    Left = 56
+    Top = 104
+    object FDConPaisID_PAIS: TIntegerField
+      FieldName = 'ID_PAIS'
+      Origin = 'ID'
+    end
+    object FDConPaisPAIS: TStringField
+      FieldName = 'PAIS'
+      Origin = 'NOME'
+      Size = 50
+    end
+    object FDConPaisABR: TStringField
+      FieldName = 'ABR'
+      Origin = 'ABR'
+      FixedChar = True
+      Size = 2
+    end
+  end
+  object dsConPais: TDataSource
+    DataSet = FDConPais
+    Left = 17
+    Top = 104
+  end
+  object FDTipoProduto: TFDQuery
+    Connection = Dados.FDConexao
+    SQL.Strings = (
+      'SELECT TPR.ID ID_TPRODUTO, TPR.TIPO,'
+      '       TPR.DESCRICAO PRODUTO'
+      'FROM TIPO_PROD TPR')
+    Left = 56
+    Top = 152
+  end
+  object dsTipoProduto: TDataSource
+    DataSet = FDTipoProduto
+    Left = 16
+    Top = 152
+  end
+  object dsFornecedor: TDataSource
+    DataSet = FDFornecedor
+    Left = 15
+    Top = 196
+  end
+  object FDFornecedor: TFDQuery
+    Connection = Dados.FDConexao
+    SQL.Strings = (
+      'SELECT FNC.ID ID_FORNECEDOR, FNC.NOME FORNECEDOR, '
+      '       FNC.ID_CIDADE, FNC.CNPJ, FNC.CONTATO'
+      ' FROM FORNECEDOR FNC')
+    Left = 56
+    Top = 196
+  end
+end

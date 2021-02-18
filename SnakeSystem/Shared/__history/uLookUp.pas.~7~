@@ -1,0 +1,48 @@
+unit uLookUp;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.Client,
+  Data.DB, FireDAC.Comp.DataSet;
+
+type
+  TdmLookup = class(TDataModule)
+    FDConEstado: TFDQuery;
+    dsConEstado: TDataSource;
+    FDTransaction: TFDTransaction;
+    FDConCidade: TFDQuery;
+    dsConCidade: TDataSource;
+    FDConPais: TFDQuery;
+    dsConPais: TDataSource;
+    FDConEstadoID_ESTADO: TIntegerField;
+    FDConEstadoID_PAIS: TIntegerField;
+    FDConEstadoESTADO: TStringField;
+    FDConEstadoUF: TStringField;
+    FDConPaisID_PAIS: TIntegerField;
+    FDConPaisPAIS: TStringField;
+    FDConPaisABR: TStringField;
+    FDConCidadeID_CIDADE: TIntegerField;
+    FDConCidadeID_ESTADO: TIntegerField;
+    FDConCidadeCIDADE: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dmLookup: TdmLookup;
+
+implementation
+
+uses
+  uDm;
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

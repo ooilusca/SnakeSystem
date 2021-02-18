@@ -1,0 +1,133 @@
+unit uFormFiltroFornecedores;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFormFiltroPadrao, cxGraphics,
+  cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit,
+  dxSkinsCore, dxSkinBlack, dxSkinBlue, dxSkinBlueprint, dxSkinCaramel,
+  dxSkinCoffee, dxSkinDarkroom, dxSkinDarkSide, dxSkinDevExpressDarkStyle,
+  dxSkinDevExpressStyle, dxSkinFoggy, dxSkinGlassOceans, dxSkinHighContrast,
+  dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin,
+  dxSkinMetropolis, dxSkinMetropolisDark, dxSkinMoneyTwins,
+  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
+  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinOffice2010Black,
+  dxSkinOffice2010Blue, dxSkinOffice2010Silver, dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray, dxSkinOffice2013White, dxSkinOffice2016Colorful,
+  dxSkinOffice2016Dark, dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic,
+  dxSkinSharp, dxSkinSharpPlus, dxSkinSilver, dxSkinSpringtime, dxSkinStardust,
+  dxSkinSummer2008, dxSkinTheAsphaltWorld, dxSkinTheBezier,
+  dxSkinsDefaultPainters, dxSkinValentine, dxSkinVisualStudio2013Blue,
+  dxSkinVisualStudio2013Dark, dxSkinVisualStudio2013Light, dxSkinVS2010,
+  dxSkinWhiteprint, dxSkinXmas2008Blue, Vcl.Menus, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  FireDAC.Comp.Client, Data.DB, FireDAC.Comp.DataSet, cxButtons, Vcl.StdCtrls,
+  cxTextEdit, Vcl.ExtCtrls, cxStyles, cxCustomData, cxFilter, cxData,
+  cxDataStorage, cxNavigator, dxDateRanges,
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxDBData,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridLevel,
+  cxClasses, cxGridCustomView, cxGrid, cxDBEdit, uFormCadFornecedor;
+
+type
+  TfrmFormFiltroFornecedores = class(TfrmFormFiltroPadrao)
+    FDFiltroID_FORNECEDOR: TIntegerField;
+    FDFiltroID_CIDADE: TIntegerField;
+    FDFiltroFORNECEDOR: TStringField;
+    FDFiltroCNPJ: TStringField;
+    FDFiltroCONTATO: TStringField;
+    Label2: TLabel;
+    cxGridFornecedoresDBTableView1: TcxGridDBTableView;
+    cxGridFornecedoresLevel1: TcxGridLevel;
+    cxGridFornecedores: TcxGrid;
+    cxGridFornecedoresDBTableView1Column1: TcxGridDBColumn;
+    cxGridFornecedoresDBTableView1Column2: TcxGridDBColumn;
+    cxGridFornecedoresDBTableView1Column3: TcxGridDBColumn;
+    cxGridFornecedoresDBTableView1Column4: TcxGridDBColumn;
+    cxEdtCNPJ: TcxTextEdit;
+    cxbtnNovo: TcxButton;
+    cxbtnVisualizar: TcxButton;
+    procedure btnFiltroClick(Sender: TObject);
+    procedure cxbtnNovoClick(Sender: TObject);
+    procedure cxbtnVisualizarClick(Sender: TObject);
+  private
+    procedure Filtrar;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmFormFiltroFornecedores: TfrmFormFiltroFornecedores;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmFormFiltroFornecedores.btnFiltroClick(Sender: TObject);
+begin
+  inherited;
+  Filtrar;
+end;
+
+procedure TfrmFormFiltroFornecedores.cxbtnNovoClick(Sender: TObject);
+begin
+  inherited;
+    frmCadFornecedor := TfrmCadFornecedor.Create(Self);
+  try
+    frmCadFornecedor.FDCadPadrao.Insert;
+    frmCadFornecedor.ShowModal;
+  finally
+    FreeAndNil(frmCadFornecedor);
+  end;
+end;
+
+procedure TfrmFormFiltroFornecedores.cxbtnVisualizarClick(Sender: TObject);
+begin
+  inherited;
+  ValidaFDQVazia;
+  frmCadFornecedor := TfrmCadFornecedor.Create(Self);
+  try
+    frmCadFornecedor.FDCadPadrao.Locate('ID', FDFiltroID_FORNECEDOR.AsInteger, [loCaseInsensitive, loPartialKey]);
+    frmCadFornecedor.bitbtnExcluir.Enabled := True;
+    frmCadFornecedor.ShowModal;
+  finally
+    FreeAndNil(frmCadFornecedor);
+  end;
+end;
+
+procedure TfrmFormFiltroFornecedores.Filtrar;
+var
+  sSQL, Where, OrderBy :string;
+
+begin
+  sSQL    := EmptyStr;
+  Where   := EmptyStr;
+  OrderBy := EmptyStr;
+
+  FDFiltro.Close;
+  FDFiltro.SQL.Clear;
+
+  sSQL:=' SELECT FNC.ID ID_FORNECEDOR, FNC.ID_CIDADE,'+
+        '      FNC.NOME FORNECEDOR, FNC.CNPJ,        '+
+        '      FNC.CONTATO                           '+
+        '  FROM FORNECEDOR FNC                       '+
+        ' WHERE FNC.DATA_EXCLUIDO IS NULL            ';
+
+OrderBy := ' ORDER BY FNC.NOME ';
+
+  if (Trim(cxEdtFiltro.Text) <> '') or (Trim(cxEdtFiltro.Text) <> EmptyStr) then
+  begin
+    Where := Where + ' AND TRIM(FNC.NOME) COLLATE WIN_PRBT LIKE '+ QuotedStr(Chr(37)+Trim(cxEdtFiltro.Text)+Chr(37));
+  end;
+
+  if (Trim(cxEdtCNPJ.Text) <> '') or (Trim(cxEdtCNPJ.Text) <> EmptyStr) then
+  begin
+    Where := Where + ' AND TRIM(REPLACE(REPLACE(REPLACE(FNC.CNPJ, ''.'', ''''), ''/'', ''''), ''-'', '''')) = ' + QuotedStr(Chr(37)+Trim(cxEdtCNPJ.Text)+Chr(37));
+  end;
+
+  FDFiltro.SQL.text := sSQL + Where + OrderBy;
+  FDFiltro.Open();
+end;
+end.

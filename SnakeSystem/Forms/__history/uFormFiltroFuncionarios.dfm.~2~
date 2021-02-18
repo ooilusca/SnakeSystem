@@ -1,0 +1,194 @@
+inherited frmFormFiltroFuncionario: TfrmFormFiltroFuncionario
+  Caption = 'frmFormFiltroFuncionario'
+  ClientHeight = 340
+  ClientWidth = 765
+  FormStyle = fsMDIChild
+  Visible = True
+  WindowState = wsMaximized
+  ExplicitWidth = 781
+  ExplicitHeight = 379
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    Width = 765
+    Height = 73
+    Color = 16580092
+    ParentBackground = False
+    ExplicitWidth = 765
+    ExplicitHeight = 73
+    inherited Label1: TLabel
+      Left = 29
+      Top = 22
+      Width = 37
+      Caption = 'C'#243'digo:'
+      FocusControl = cxEdtFiltro
+      ExplicitLeft = 29
+      ExplicitTop = 22
+      ExplicitWidth = 37
+    end
+    object Label3: TLabel [1]
+      Left = 104
+      Top = 22
+      Width = 55
+      Height = 13
+      Caption = 'Funcion'#225'rio'
+      FocusControl = cxEdtFuncionario
+    end
+    object Label4: TLabel [2]
+      Left = 348
+      Top = 22
+      Width = 23
+      Height = 13
+      Caption = 'CPF:'
+      FocusControl = cxEdtCPF
+    end
+    inherited cxEdtFiltro: TcxTextEdit
+      Left = 29
+      Top = 37
+      Style.LookAndFeel.SkinName = 'Blue'
+      StyleDisabled.LookAndFeel.SkinName = 'Blue'
+      StyleFocused.LookAndFeel.SkinName = 'Blue'
+      StyleHot.LookAndFeel.SkinName = 'Blue'
+      ExplicitLeft = 29
+      ExplicitTop = 37
+      ExplicitWidth = 65
+      Width = 65
+    end
+    inherited Panel2: TPanel
+      Left = 651
+      Height = 71
+      TabOrder = 3
+      ExplicitLeft = 651
+      ExplicitHeight = 71
+      inherited cxButton1: TcxButton
+        Height = 61
+        ExplicitHeight = 61
+      end
+    end
+    inherited btnFiltro: TcxButton
+      AlignWithMargins = True
+      Left = 457
+      Top = 6
+      Width = 94
+      Height = 61
+      Margins.Left = 5
+      Margins.Top = 5
+      Margins.Right = 100
+      Margins.Bottom = 5
+      Align = alRight
+      Caption = 'FILTRAR'
+      OnClick = btnFiltroClick
+      ExplicitLeft = 457
+      ExplicitTop = 6
+      ExplicitWidth = 94
+      ExplicitHeight = 61
+    end
+    object cxEdtFuncionario: TcxTextEdit
+      Left = 104
+      Top = 37
+      Style.LookAndFeel.NativeStyle = False
+      Style.LookAndFeel.SkinName = 'Blue'
+      StyleDisabled.LookAndFeel.NativeStyle = False
+      StyleDisabled.LookAndFeel.SkinName = 'Blue'
+      StyleFocused.LookAndFeel.NativeStyle = False
+      StyleFocused.LookAndFeel.SkinName = 'Blue'
+      StyleHot.LookAndFeel.NativeStyle = False
+      StyleHot.LookAndFeel.SkinName = 'Blue'
+      TabOrder = 1
+      Width = 234
+    end
+  end
+  object cxEdtCPF: TcxTextEdit [1]
+    Left = 348
+    Top = 37
+    Style.LookAndFeel.NativeStyle = False
+    Style.LookAndFeel.SkinName = 'Blue'
+    StyleDisabled.LookAndFeel.NativeStyle = False
+    StyleDisabled.LookAndFeel.SkinName = 'Blue'
+    StyleFocused.LookAndFeel.NativeStyle = False
+    StyleFocused.LookAndFeel.SkinName = 'Blue'
+    StyleHot.LookAndFeel.NativeStyle = False
+    StyleHot.LookAndFeel.SkinName = 'Blue'
+    TabOrder = 1
+    Width = 96
+  end
+  object cxGridFuncionario: TcxGrid [2]
+    Left = 0
+    Top = 73
+    Width = 765
+    Height = 267
+    Align = alClient
+    TabOrder = 2
+    LookAndFeel.NativeStyle = False
+    LookAndFeel.SkinName = 'Silver'
+    object cxGridFuncionarioDBTableView1: TcxGridDBTableView
+      Navigator.Buttons.CustomButtons = <>
+      DataController.DataSource = dsFiltro
+      DataController.Summary.DefaultGroupSummaryItems = <>
+      DataController.Summary.FooterSummaryItems = <
+        item
+          Kind = skCount
+          FieldName = 'ID'
+          Column = cxGridFuncionarioDBTableView1Column1
+          DisplayText = 'Total: '
+        end>
+      DataController.Summary.SummaryGroups = <>
+      OptionsView.Footer = True
+      object cxGridFuncionarioDBTableView1Column1: TcxGridDBColumn
+        Caption = 'C'#243'd.:'
+        DataBinding.FieldName = 'ID'
+        HeaderAlignmentHorz = taCenter
+        Options.Editing = False
+        Width = 50
+      end
+      object cxGridFuncionarioDBTableView1Column2: TcxGridDBColumn
+        Caption = 'Funcion'#225'rio'
+        DataBinding.FieldName = 'NOME'
+        Options.Editing = False
+        Width = 250
+      end
+      object cxGridFuncionarioDBTableView1Column3: TcxGridDBColumn
+        DataBinding.FieldName = 'CPF'
+        Options.Editing = False
+        Width = 90
+      end
+    end
+    object cxGridFuncionarioLevel1: TcxGridLevel
+      GridView = cxGridFuncionarioDBTableView1
+    end
+  end
+  inherited FDFiltro: TFDQuery
+    SQL.Strings = (
+      'SELECT FUN.ID, FUN.NOME, FUN.CPF, FUN.CELULAR, FUN.DATA_EXCLUIDO'
+      'FROM FUNCIONARIO FUN'
+      'WHERE FUN.DATA_EXCLUIDO IS NULL')
+    Left = 184
+    Top = 224
+    object FDFiltroID: TIntegerField
+      Alignment = taCenter
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object FDFiltroNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Required = True
+      Size = 100
+    end
+    object FDFiltroCPF: TStringField
+      FieldName = 'CPF'
+      Origin = 'CPF'
+      Size = 14
+    end
+  end
+  inherited dsFiltro: TDataSource
+    Left = 216
+    Top = 224
+  end
+  inherited FDTFiltro: TFDTransaction
+    Left = 248
+    Top = 224
+  end
+end

@@ -1,0 +1,144 @@
+inherited frmCadFuncionario: TfrmCadFuncionario
+  Caption = 'FUNCION'#193'RIO'
+  ClientHeight = 189
+  ClientWidth = 523
+  ExplicitWidth = 529
+  ExplicitHeight = 218
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label2: TLabel [0]
+    Left = 24
+    Top = 80
+    Width = 59
+    Height = 13
+    Caption = 'Funcion'#225'rio:'
+    FocusControl = cxDBEdtNomeFuncionario
+  end
+  object Label3: TLabel [1]
+    Left = 183
+    Top = 128
+    Width = 23
+    Height = 13
+    Caption = 'CPF:'
+    FocusControl = cxDBEdtCPFFuncionario
+  end
+  object Label4: TLabel [2]
+    Left = 24
+    Top = 128
+    Width = 37
+    Height = 13
+    Caption = 'Celular:'
+    FocusControl = cxDBEdtCelularFuncionario
+  end
+  inherited pnlHeader: TPanel
+    Width = 523
+    ExplicitWidth = 523
+    inherited bitbtnSair: TcxButton
+      Left = 442
+    end
+  end
+  object cxDBEdtNomeFuncionario: TcxDBTextEdit [4]
+    Left = 24
+    Top = 96
+    DataBinding.DataField = 'FUNCIONARIO'
+    DataBinding.DataSource = dsCadPadrao
+    Properties.CharCase = ecUpperCase
+    Style.LookAndFeel.NativeStyle = False
+    Style.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleDisabled.LookAndFeel.NativeStyle = False
+    StyleDisabled.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleFocused.LookAndFeel.NativeStyle = False
+    StyleFocused.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleHot.LookAndFeel.NativeStyle = False
+    StyleHot.LookAndFeel.SkinName = 'Office2010Blue'
+    TabOrder = 1
+    Width = 312
+  end
+  object cxDBEdtCPFFuncionario: TcxDBTextEdit [5]
+    Left = 183
+    Top = 144
+    DataBinding.DataField = 'CPF'
+    DataBinding.DataSource = dsCadPadrao
+    Properties.CharCase = ecUpperCase
+    Style.LookAndFeel.NativeStyle = False
+    Style.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleDisabled.LookAndFeel.NativeStyle = False
+    StyleDisabled.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleFocused.LookAndFeel.NativeStyle = False
+    StyleFocused.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleHot.LookAndFeel.NativeStyle = False
+    StyleHot.LookAndFeel.SkinName = 'Office2010Blue'
+    TabOrder = 2
+    Width = 153
+  end
+  object cxDBEdtCelularFuncionario: TcxDBTextEdit [6]
+    Left = 24
+    Top = 144
+    DataBinding.DataField = 'CELULAR'
+    DataBinding.DataSource = dsCadPadrao
+    Properties.CharCase = ecUpperCase
+    Style.LookAndFeel.NativeStyle = False
+    Style.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleDisabled.LookAndFeel.NativeStyle = False
+    StyleDisabled.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleFocused.LookAndFeel.NativeStyle = False
+    StyleFocused.LookAndFeel.SkinName = 'Office2010Blue'
+    StyleHot.LookAndFeel.NativeStyle = False
+    StyleHot.LookAndFeel.SkinName = 'Office2010Blue'
+    TabOrder = 3
+    Width = 153
+  end
+  inherited FDCadPadrao: TFDQuery
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_FUNCIONARIO_ID'
+    UpdateOptions.AutoIncFields = 'ID_FUNCIONARIO'
+    UpdateObject = nil
+    SQL.Strings = (
+      
+        'SELECT FUN.ID ID_FUNCIONARIO, FUN.NOME FUNCIONARIO, FUN.CPF, FUN' +
+        '.CELULAR'
+      'FROM FUNCIONARIO FUN')
+    object FDCadPadraoFUNCIONARIO: TStringField
+      FieldName = 'FUNCIONARIO'
+      Origin = 'NOME'
+      Size = 100
+    end
+    object FDCadPadraoCPF: TStringField
+      FieldName = 'CPF'
+      Origin = 'CPF'
+      Size = 14
+    end
+    object FDCadPadraoCELULAR: TStringField
+      FieldName = 'CELULAR'
+      Origin = 'CELULAR'
+      Size = 15
+    end
+    object FDCadPadraoID_FUNCIONARIO: TIntegerField
+      FieldName = 'ID_FUNCIONARIO'
+      Origin = 'ID'
+      Required = True
+    end
+  end
+  inherited FDUCadPadrao: TFDUpdateSQL
+    InsertSQL.Strings = (
+      'INSERT INTO FUNCIONARIO'
+      '(ID, NOME, CPF, CELULAR)'
+      'VALUES (:NEW_ID, :NEW_NOME, :NEW_CPF, :NEW_CELULAR)'
+      'RETURNING ID, NOME, CPF, CELULAR')
+    ModifySQL.Strings = (
+      'UPDATE FUNCIONARIO'
+      
+        'SET ID = :NEW_ID, NOME = :NEW_NOME, CPF = :NEW_CPF, CELULAR = :N' +
+        'EW_CELULAR'
+      'WHERE ID = :OLD_ID'
+      'RETURNING ID, NOME, CPF, CELULAR')
+    DeleteSQL.Strings = (
+      'DELETE FROM FUNCIONARIO'
+      'WHERE ID = :OLD_ID')
+    FetchRowSQL.Strings = (
+      'SELECT ID, NOME, CPF, CELULAR'
+      'FROM FUNCIONARIO'
+      'WHERE ID = :OLD_ID')
+  end
+end
